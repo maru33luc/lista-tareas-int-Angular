@@ -1,0 +1,12 @@
+app-lista{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media screen and (min-width: 850px){
+ app-lista{
+  flex-direction: row;
+  gap: 3rem;
+ }
+}

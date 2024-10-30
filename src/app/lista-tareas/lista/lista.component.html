@@ -1,0 +1,67 @@
+<section class="form">
+
+  <h2>Nueva tarea</h2>
+
+   <!-- CASO USO COMO FORMULARIO -->
+
+  <!-- <form action="" #form="ngForm" (ngSubmit)="enviar(form, $event)">
+
+    <label for="nombre">Título de la tarea</label>
+    <input type="text" name="nombre" id="" required ngModel>
+
+    <label for="descripcion">Descripción</label>
+    <textarea name="descripcion" id="" required ngModel></textarea>
+
+
+      <button type="submit">Agregar</button>
+    </form>
+      <button class="clear" id="clear" (click)="limpiar(form)">Limpiar</button> -->
+
+
+         <!-- CASO USO PROPERTY BINDING CON NGMODEL -->
+
+      <label for="nombre">Título de la tarea</label>
+      <input type="text" name="nombre" id="" [(ngModel)]="tarea.titulo" >
+
+      <label for="descripcion">Descripción</label>
+      <textarea name="descripcion" id="" [(ngModel)]="tarea.descripcion" ></textarea>
+
+      <button (click)="enviar()" [disabled]="tarea.titulo==''">Enviar</button>
+      <button class="clear" id="clear" (click)="limpiar()">Limpiar</button>
+
+</section>
+
+<section class="listas">
+
+  <article>
+    <ul class="tareas-pendientes">
+      <h2>Tareas Pendientes</h2>
+      @for(item of lista; track item.id){
+      <li>
+        <input type="checkbox" name="status" [id]="item.id" (change)="setCompleted($event)"
+          [checked]="item.estado=='completed'">
+        <label for="status">{{item.titulo}}</label>
+        <button class="eliminar" (click)="eliminarTarea($event)" [id]="item.id" >Eliminar</button>
+      </li>
+      }@empty {
+      <p>No hay tareas pendientes</p>
+      }
+    </ul>
+  </article>
+
+  <div class="separador"></div>
+
+  <article>
+    <ul class="tareas-completas">
+      <h2>Tareas Completadas</h2>
+      @for(item of listaCompletas; track item.id){
+      <li>
+        <input type="checkbox" name="status" id="item.id" checked>
+        <label for="status" [ngClass]="{'completas': item.estado =='completed'}">{{item.titulo}}</label>
+        }@empty {
+        <p>No hay tareas completadas</p>
+        }
+    </ul>
+  </article>
+
+</section>
